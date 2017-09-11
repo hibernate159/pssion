@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
+
+	<mvc:default-servlet-handler />
+	<!-- 启用spring mvc 注解 -->
+	<context:annotation-config />
+	<!-- 默认的注解映射的支持 -->
+	<mvc:annotation-driven ignore-default-model-on-redirect="true" />
+
+	<!-- 设置使用注解的类所在的目录 -->
+	<context:component-scan base-package="com.l.z.web.controller" />
+
+	<!-- 完成请求和注解POJO的映射 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
+	<!-- 引入外部数据源配置信息 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:antx.properties</value>
+		</property>
+	</bean>
+	
+	<import resource="springmvc-mybatis.xml"/>
+	<import resource="springmvc-view.xml"/>
+	<import resource="springmvc-others.xml"/>
+	<import resource="cxf-servlet.xml"/>
+	
+</beans>

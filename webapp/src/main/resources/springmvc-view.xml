@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+            http://www.springframework.org/schema/beans/spring-beans.xsd      
+            http://www.springframework.org/schema/context   
+            http://www.springframework.org/schema/context/spring-context.xsd      
+            http://www.springframework.org/schema/mvc   
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd      
+            http://www.springframework.org/schema/util   
+            http://www.springframework.org/schema/util/spring-util.xsd">
+
+	
+	<!-- 定义多视图解析器 -->
+	<bean id="htmlViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/html/" />
+		<property name="suffix" value=".html" />
+		<!-- 视图解析器优先级 -->
+		<property name="order" value="2" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+	</bean>
+	<bean id="velocityViewResolver"
+		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		<property name="cache" value="false" />
+		<property name="order" value="1" />
+		<property name="suffix" value=".vm" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="toolboxConfigLocation" value="WEB-INF/velocity/toolbox.xml" />
+	</bean>
+
+	<!-- 配置Velocity引擎 -->
+	<bean id="velocityConfigurer"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/WEB-INF/templates/" />
+		<property name="configLocation" value="classpath:properties/velocity.properties" />
+	</bean>
+	
+	<!-- 上传文件拦截，设置最大上传文件大小 10M=10*1024*1024(B)=10485760 bytes -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- one of the properties available; the maximum file size in bytes -->
+		<property name="maxUploadSize">
+			<value>5242880</value>
+		</property>
+	</bean>
+</beans> 

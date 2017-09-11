@@ -1,0 +1,12 @@
+.classpath
+.project
+.git
+.svn
+.class
+.jar
+.project
+.gitgnore
+.settings
+*/.git/*
+*/.settings/*
+*/target/*

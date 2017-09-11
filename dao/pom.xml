@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.l.z.pssion</groupId>
+    <artifactId>pssion</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>dao</artifactId>
+  <name>dao</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
+  	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+	</dependency>
+				
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+  <build>
+  	<plugins>
+  		<plugin>
+		    <groupId>org.mybatis.generator</groupId>
+		    <artifactId>mybatis-generator-maven-plugin</artifactId>
+		    <version>1.3.5</version>
+
+            <configuration>
+            	<configurationFile>${basedir}/src/main/resources/generatorConfig.xml</configurationFile>
+            	<!--允许移动生成的文件-->
+                <verbose>true</verbose>
+                <!--允许覆盖生成的文件-->
+                <overwrite>true</overwrite>
+            </configuration>
+        </plugin>
+  	</plugins>
+	<resources>
+	    <resource>
+	        <directory>${basedir}/src/main/java</directory>
+	        <includes>
+	            <include>**/*.xml</include>
+	            <include>**/*.properties</include>
+	        </includes>
+	    </resource>
+	    <resource>
+	        <directory>${basedir}/src/main/resources</directory>
+	    </resource>
+	</resources>
+  </build>
+</project>
