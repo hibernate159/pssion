@@ -108,6 +108,13 @@
 				<artifactId>standard</artifactId>
 				<version>1.1.2</version>
 			</dependency>
+			
+			<dependency>
+			    <groupId>org.freemarker</groupId>
+			    <artifactId>freemarker</artifactId>
+			    <version>2.3.23</version>
+			</dependency>
+			
 			<!-- velocity -->
 			<dependency>
 				<groupId>org.apache.velocity</groupId>

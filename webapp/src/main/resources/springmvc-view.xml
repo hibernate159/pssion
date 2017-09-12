@@ -24,22 +24,53 @@
 		<property name="order" value="2" />
 		<property name="contentType" value="text/html;charset=UTF-8" />
 	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">  
+        <property name="freemarkerSettings" ref="freemarkerConfiguration"/>  
+        <property name="templateLoaderPath">  
+            <value>WEB-INF/templates/</value>  
+        </property>  
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="xml_escape" value-ref="fmXmlEscape" />
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">  
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>  
+        <property name="contentType" value="text/html; charset=utf-8"/>
+        <property name="order" value="1" /> 
+        <property name="cache" value="false"/>
+        <property name = "suffix" value = ".ftl"></property>
+        <property name="exposeRequestAttributes" value="true" />
+        <property name="exposeSessionAttributes" value="true" />
+        <property name="exposeSpringMacroHelpers" value="true" />
+    </bean>
+        
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+    
+	<!-- 
 	<bean id="velocityViewResolver"
-		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="cache" value="false" />
 		<property name="order" value="1" />
 		<property name="suffix" value=".vm" />
 		<property name="contentType" value="text/html;charset=UTF-8" />
 		<property name="toolboxConfigLocation" value="WEB-INF/velocity/toolbox.xml" />
+		<property name="layoutUrl" value="layout/layout.vm"/>
 	</bean>
-
+	 -->
+	 
 	<!-- 配置Velocity引擎 -->
+	<!-- 
 	<bean id="velocityConfigurer"
 		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="resourceLoaderPath" value="/WEB-INF/templates/" />
 		<property name="configLocation" value="classpath:properties/velocity.properties" />
 	</bean>
-	
+	 -->
+	 
 	<!-- 上传文件拦截，设置最大上传文件大小 10M=10*1024*1024(B)=10485760 bytes -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

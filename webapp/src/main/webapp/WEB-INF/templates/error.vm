@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<html lang="zh-CN">
+#include('../default/heard.html')
 <body>
-mv
 </body>
+#include('../default/footer.html')
 </html>

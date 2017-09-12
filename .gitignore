@@ -6,6 +6,7 @@
 .jar
 .project
 .gitgnore
+.gitignore
 .settings
 */.git/*
 */.settings/*
