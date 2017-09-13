@@ -12,7 +12,9 @@
 	    <!-- 如果在国际化资源文件中找不到对应代码的信息，就用这个代码作为名称  -->               
 	    <property name="useCodeAsDefaultMessage" value="true" />           
 	</bean>
-	<bean id="urlLocaleResolver" class="com.l.z.web.resolver.UrlLocaleResolver"/> 
+	<bean id="urlLocaleResolver" class="com.l.z.web.resolver.UrlLocaleResolver">
+	   <property name="defaultLocale" value="${local.default}" />
+	</bean> 
 	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
 	
     <mvc:interceptors>
@@ -20,6 +22,10 @@
 		  <mvc:mapping path="/**" />
 		  <mvc:exclude-mapping path="/show/" /><!--定义了无须登陆的方法请求，直接过滤拦截-->
 		  <bean class="com.l.z.web.interceptor.LoginInterceptor" /><!--自定义拦截器注册-->
+		</mvc:interceptor>
+		<mvc:interceptor>
+		  <mvc:mapping path="/**/*.htm" />
+		  <bean class="com.l.z.web.interceptor.AuthorityInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
 		  <mvc:mapping path="/order/" />
