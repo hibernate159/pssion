@@ -26,6 +26,7 @@ public class DemoController extends AbstractBaseController {
 	public ModelAndView htmlDemo2(@PathVariable(value="id") String id) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("name", id);
+		mv.addObject("sc", "<script>alert('1')</script>");
 		mv.setViewName("demo/mv");
 		return mv;
 	}

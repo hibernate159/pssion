@@ -8,11 +8,14 @@
 	<includeBaseDirectory>true</includeBaseDirectory>
 	<fileSets>
 		<fileSet>
-			<directory>src/main/webapp</directory>
+			<directory>src/main/webapp/WEB-INF/</directory>
 			<outputDirectory>/</outputDirectory>
 			<excludes>
-				<exclude>dbmap/*</exclude>
-			</excludes>
+                <exclude>**/html/</exclude>
+                <exclude>**/templates/</exclude>
+                <exclude>**/velocity/</exclude>
+                <exclude>**/web.xml</exclude>
+            </excludes>
 		</fileSet>
 	</fileSets>
 </assembly>  

@@ -1,3 +1,5 @@
+<#assign staticHttpUrl=".." uploadHttpUrl="b" />
+
 <#macro default title>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,20 +18,21 @@
     <link href="../globle/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../globle/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="../globle/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="../globle/css/mp/navbar-fixed-top.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../globle/js/assets/ie-emulation-modes-warning.js"></script>
+    <!--[if lt IE 9]></script><![endif]-->
+    <script src="../globle/assets/js/ie8-responsive-file-warning.js">
+    <script src="../globle/assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <![endif]-->
-    <script src="../globle/js/assets/html5shiv.min.js"></script>
-    <script src="../globle/js/assets/respond.min.js"></script>
+    <script src="../globle/assets/js/html5shiv.min.js"></script>
+    <script src="../globle/assets/js/respond.min.js"></script>
   </head>
 
   <body>
@@ -71,10 +74,11 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-  <#nested>
-  
+    
+    <#nested>
+    
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../globle/js/jquery.min.js"></script>
+    <script src="${staticHttpUrl}/globle/js/jquery.min.js"></script>
     <script src="../globle/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../globle/assets/js/ie10-viewport-bug-workaround.js"></script>

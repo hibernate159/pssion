@@ -1,3 +1,5 @@
 <@bp.default title="demo-mv">
-mv.ftl
+<#escape x as x?html>
+${sc}
+</#escape>
 </@bp.default>
