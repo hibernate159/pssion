@@ -25,6 +25,9 @@
 		<property name="contentType" value="text/html;charset=UTF-8" />
 	</bean>
 	
+	<bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">  
+        <property name="location" value="classpath:properties/freemarker.properties"/>  
+    </bean>
 	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">  
         <property name="freemarkerSettings" ref="freemarkerConfiguration"/>  
         <property name="templateLoaderPath">  
