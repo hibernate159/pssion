@@ -25,6 +25,7 @@
 		</property>
 	</bean>
 	
+	<import resource="spring-redis.xml"/>
 	<import resource="springmvc-mybatis.xml"/>
 	<import resource="springmvc-view.xml"/>
 	<import resource="springmvc-others.xml"/>

@@ -19,7 +19,12 @@
 		<artifactId>dao</artifactId>
 	</dependency>
 	
-     <dependency>
+	<dependency>  
+        <groupId>redis.clients</groupId>  
+        <artifactId>jedis</artifactId>  
+    </dependency>
+    
+    <dependency>
 	    <groupId>com.itextpdf</groupId>
 	    <artifactId>itextpdf</artifactId>
 	</dependency>
