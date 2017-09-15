@@ -30,7 +30,6 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
         // if (attribute == null) {
         // return;
         // }
-        System.out.println(modelAndView.getViewName());
         modelAndView.addObject("userStr", "供应商[100148]");
         demoCache.testCache();
         // TODO 权限设置
