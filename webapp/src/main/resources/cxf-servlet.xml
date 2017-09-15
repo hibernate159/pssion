@@ -8,7 +8,7 @@
     <!-- cxf3以后，只需要引入这个配置文件即可，其他两个废弃掉了 -->  
     <import resource="classpath:META-INF/cxf/cxf.xml" />  
     
-    <jaxws:endpoint id="userService" implementor="com.l.z.common.biz.ws.DemoWsImpl"  address="/userWS" />  
+    <jaxws:endpoint id="userService" implementor="com.l.z.common.ws.impl.DemoWsImpl"  address="/userWS" />  
     
     <!-- 
     <jaxws:client  id="userClient" serviceClass="com.wbliu.webservice.service.impl.IUserService"  

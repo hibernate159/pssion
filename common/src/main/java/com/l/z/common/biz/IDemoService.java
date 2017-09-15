@@ -4,7 +4,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 @WebService
-public interface IDemoWs {
+public interface IDemoService {
 
 	void testDemo(@WebParam String jsonStr);
 }
