@@ -1,5 +1,6 @@
 package com.l.z.web.controller.demo;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,43 +11,48 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.l.z.common.biz.IDemoService;
-import com.l.z.common.pojo.Demo;
+import com.l.z.common.pojo.vo.DemoVO;
 import com.l.z.web.controller.AbstractBaseController;
+import com.l.z.web.controller.IBaseRequestPage;
 
 @Controller
 @RequestMapping(value = "/demo/")
-public class DemoController extends AbstractBaseController {
+public class DemoController extends AbstractBaseController implements IBaseRequestPage<DemoVO> {
+
+    private final String BASE_VIEW = "demo/";
 
     @Autowired
     private IDemoService demoServiceImpl;
 
-    @RequestMapping(value = "demo.htm", method = { RequestMethod.GET })
-    public String htmlDemo() {
-        throw new NumberFormatException();
-    }
-
-    @RequestMapping(value = "demo{id}.htm", method = { RequestMethod.GET })
-    public ModelAndView htmlDemo2(@PathVariable(value = "id") String id) {
-        demoServiceImpl.testDemo("");
+    @Override
+    @RequestMapping(value = "rp_{type}.htm")
+    public ModelAndView screenPageHtml(@PathVariable(value = "type") String type,
+                    @ModelAttribute("returnPage") DemoVO params) {
         ModelAndView mv = new ModelAndView();
-        mv.addObject("name", id);
-        mv.addObject("sc", "<script>alert('1')</script>");
-        mv.setViewName("demo/mv");
+        if (StringUtils.equals("", type)) {
+            demoServiceImpl.testDemo("");
+        }
+        demoServiceImpl.testDemo("");
+        mv.addObject("", params);
+        mv.setViewName(BASE_VIEW + type);
         return mv;
     }
 
+    @Override
     @ResponseBody
-    @RequestMapping(value = "jd.json", method = { RequestMethod.GET })
-    public String jsonDemo2() {
+    @RequestMapping(value = "c_{type}.json", method = { RequestMethod.GET })
+    public String screenPageCount(@PathVariable(value = "type") String type, DemoVO params) {
+        // TODO Auto-generated method stub
         return "{username: \"Josh\", password: \"Passw0rd\"}";
     }
 
-    @RequestMapping(value = "att.htm", method = { RequestMethod.GET })
-    public ModelAndView vmDemo3(@ModelAttribute Demo d) {
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("name", 23);
-        mv.addObject("age", 23);
-        mv.setViewName("demo/mv");
-        return mv;
+    @Override
+    @RequestMapping(value = "f_{action}.do", params = "_csf_token", method = { RequestMethod.POST })
+    public ModelAndView doFormToAction(@PathVariable(value = "action") String action, DemoVO params) {
+        // TODO Auto-generated method stub
+        if (StringUtils.equals("", action)) {
+            demoServiceImpl.testDemo("");
+        }
+        return null;
     }
 }

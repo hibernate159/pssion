@@ -12,7 +12,8 @@
 	    <!-- 如果在国际化资源文件中找不到对应代码的信息，就用这个代码作为名称  -->               
 	    <property name="useCodeAsDefaultMessage" value="true" />           
 	</bean>
-	<bean id="urlLocaleResolver" class="com.l.z.web.resolver.UrlLocaleResolver">
+	<!-- id 必须是 localeResolver 才能重写默认resolver -->
+	<bean id="localeResolver" class="com.l.z.web.resolver.UrlLocaleResolver">
 	   <property name="defaultLocale" value="${local.default}" />
 	</bean> 
 	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
@@ -28,7 +29,7 @@
 		  <bean class="com.l.z.web.interceptor.AuthorityInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
-		  <mvc:mapping path="/order/" />
+		  <mvc:mapping path="/demo/*" />
 		  <ref bean="localeChangeInterceptor"/>
 		</mvc:interceptor>
 		<!-- 我们可以直接在者注册自定义拦截器Bean来配置全局拦截器，会对所有请求拦截-->

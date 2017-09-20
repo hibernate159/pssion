@@ -1,6 +1,5 @@
 package com.l.z.web.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -24,7 +23,9 @@ public class LoginController {
 
     @RequestMapping(value = "logout.do", method = { RequestMethod.GET })
     public ModelAndView logout(HttpSession redisSession) {
-        redisSession.removeAttribute("user");
+        if (redisSession != null) {
+            redisSession.removeAttribute("user");
+        }
         ModelAndView mv = new ModelAndView();
         mv.setViewName("redirect:/login.html");
         return mv;
