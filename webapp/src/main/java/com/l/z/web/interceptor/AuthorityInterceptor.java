@@ -11,12 +11,17 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.l.z.common.cache.CsrfTokenCache;
 import com.l.z.common.cache.DemoCache;
+import com.l.z.common.utils.ThreadUserTool;
 
 public class AuthorityInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
-    private DemoCache demoCache;
+    private DemoCache      demoCache;
+
+    @Autowired
+    private CsrfTokenCache csrfTokenCache;
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
@@ -30,9 +35,12 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
         // if (attribute == null) {
         // return;
         // }
-        modelAndView.addObject("userStr", "供应商[100148]");
+        modelAndView.addObject("userStr", "[" + ThreadUserTool.getLocalUser().getUserIdStr() + "]");
         demoCache.testCache();
         // TODO 权限设置
+
+        // TODO token
+        modelAndView.addObject("CsrfToken", csrfTokenCache.tokenMembers(ThreadUserTool.getLocalUser().getUserIdStr()));
     }
 
 }

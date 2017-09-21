@@ -33,7 +33,6 @@ public class DemoController extends AbstractBaseController implements IBaseReque
             demoServiceImpl.testDemo("");
         }
         demoServiceImpl.testDemo("");
-        mv.addObject("", params);
         mv.setViewName(BASE_VIEW + type);
         return mv;
     }
@@ -47,12 +46,12 @@ public class DemoController extends AbstractBaseController implements IBaseReque
     }
 
     @Override
-    @RequestMapping(value = "f_{action}.do", params = "_csf_token", method = { RequestMethod.POST })
+    @RequestMapping(value = "f_{action}.do", params = "_csrf_token", method = { RequestMethod.POST })
     public ModelAndView doFormToAction(@PathVariable(value = "action") String action, DemoVO params) {
-        // TODO Auto-generated method stub
+        ModelAndView mv = new ModelAndView("error.ftl");
         if (StringUtils.equals("", action)) {
             demoServiceImpl.testDemo("");
         }
-        return null;
+        return mv;
     }
 }

@@ -2,37 +2,33 @@ package com.l.z.web.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import com.l.z.common.pojo.Demo;
+
+import com.l.z.common.cache.CsrfTokenCache;
 import com.l.z.common.utils.ThreadUserTool;
 
-public class LoginInterceptor extends HandlerInterceptorAdapter {
+public class CsrfTokenInterceptor extends HandlerInterceptorAdapter {
+
+    @Autowired
+    private CsrfTokenCache csrfTokenCache;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
                     throws Exception {
-        HttpSession session = request.getSession();
-
         // 获得请求路径的uri
         String uri = request.getRequestURI();
         // 进入登录页面，判断session中是否有key，有的话重定向到首页，否则进入登录界面
-        if (uri.contains("show/log")) {
+        if (uri.contains("uploadFile") || uri.contains("show/")) {
             return true;
         }
-
-        // 其他情况判断session中是否有key，有的话继续用户的操作
-        if (session.getAttribute("user") != null) {
-            Demo user = (Demo) session.getAttribute("user");
-            ThreadUserTool currUser = new ThreadUserTool();
-            currUser.setUserIdStr(user.getUname());
-            ThreadUserTool.setLocalUser(currUser);
+        String token = request.getParameter("_csrf_token");
+        boolean check = csrfTokenCache.tokenCheck(ThreadUserTool.getLocalUser().getUserIdStr(), token);
+        if (check) {
             return true;
         }
-
-        // 最后的情况就是进入登录页面
-        response.sendRedirect(request.getContextPath() + "/login.html");
+        response.sendRedirect(request.getContextPath() + "/error.html");
         return false;
     }
 

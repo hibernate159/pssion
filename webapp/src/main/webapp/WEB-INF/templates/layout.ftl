@@ -1,5 +1,7 @@
-<#assign staticHttpUrl=".." uploadHttpUrl="b" />
-<#assign menuMap={"订单管理":"orders","外协管理":"wx","往来管理":"wl","订单管理":"orders","外协管理":"wx","往来管理":"wl"} />
+<#import "spring.ftl" as spring>
+
+<#assign staticHttpUrl=".." uploadHttpUrl=".." />
+<#assign menuMap={"menu.odm":"orders","menu.wxm":"wx","menu.wlm":"wl","menu.wlm":"orders","menu.wlm":"wx"} />
 
 <#macro default title userStr urlMap>
 <!DOCTYPE html>
@@ -47,14 +49,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="javascript:;">供应商平台</a>
+          <a class="navbar-brand" href="javascript:;"><@spring.message "menu.title"/></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <#assign mks = menuMap?keys />
             <#list mks as mk>
             <li class="dropdown">
-            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${mk} <span class="caret"></span></a>
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><@spring.message "${mk}"/> <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li><a href="#">${menuMap["${mk}"]}_${mk_index}</a></li>
             </ul>
@@ -63,9 +65,9 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">欢迎:${userStr} <span class="caret"></span></a>
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><@spring.message "menu.right.welcome1"/> :${userStr} <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="javascript:;">退出</a></li>
+                <li><a href="/show/logout.do">退出</a></li>
             </ul>
             </li>
           </ul>

@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.l.z.common.cache.DemoCache;
+import com.l.z.common.utils.ThreadUserTool;
 
 @Controller
 public abstract class AbstractBaseController {
@@ -19,7 +20,7 @@ public abstract class AbstractBaseController {
 
     @ExceptionHandler
     protected ModelAndView exp(Exception ex) {
-        System.out.println(ex);
+        ThreadUserTool.removeLocal();
         ModelAndView mv = new ModelAndView("redirect:/error.html");
         // mv.addObject("ex", ex);
 

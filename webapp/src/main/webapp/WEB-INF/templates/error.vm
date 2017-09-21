@@ -1,7 +1,0 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-#include('../default/heard.html')
-<body>
-</body>
-#include('../default/footer.html')
-</html>

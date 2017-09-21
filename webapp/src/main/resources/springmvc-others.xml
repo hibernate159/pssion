@@ -28,6 +28,12 @@
 		  <mvc:mapping path="/**/*.htm" />
 		  <bean class="com.l.z.web.interceptor.AuthorityInterceptor" />
 		</mvc:interceptor>
+		
+		<mvc:interceptor>
+		  <mvc:mapping path="/**/*.do" />
+		  <bean class="com.l.z.web.interceptor.CsrfTokenInterceptor" />
+		</mvc:interceptor>
+		
 		<mvc:interceptor>
 		  <mvc:mapping path="/demo/*" />
 		  <ref bean="localeChangeInterceptor"/>
