@@ -49,6 +49,12 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
 				<version>${spring.version}</version>
+				<exclusions>  
+			        <exclusion>  
+			            <groupId>commons-logging</groupId>  
+			            <artifactId>commons-logging</artifactId>  
+			        </exclusion>  
+			    </exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -74,6 +80,18 @@
 			    <groupId>org.springframework.data</groupId>
 			    <artifactId>spring-data-redis</artifactId>
 			    <version>1.8.6.RELEASE</version>
+			</dependency>
+			<!-- logback -->
+			<dependency>
+			    <groupId>org.logback-extensions</groupId>
+			    <artifactId>logback-ext-spring</artifactId>
+			    <version>0.1.4</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>ch.qos.logback</groupId>
+			    <artifactId>logback-classic</artifactId>
+			    <version>1.2.3</version>
 			</dependency>
 			
 			
@@ -186,6 +204,13 @@
 			<properties>
 				<antx>ant_local</antx>
 				<locale>zh_CN</locale>
+				
+				<log.moduleName>pssion-project</log.moduleName>
+                <log.base>G:/work/logs</log.base>
+                <log.other.level>DEBUG</log.other.level>
+                <log.root.level>DEBUG</log.root.level>
+                <log.maxSize>1MB</log.maxSize>
+                <log.stdout.ref><![CDATA[<appender-ref ref="stdout" />]]></log.stdout.ref>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -196,6 +221,13 @@
 			<properties>
 				<antx>ant_dev</antx>
 				<locale>zh_CN</locale>
+				
+				<log.moduleName>pssion-project</log.moduleName>
+                <log.base>logs</log.base>
+                <log.other.level>INFO</log.other.level>
+                <log.root.level>INFO</log.root.level>
+                <log.maxSize>5MB</log.maxSize>
+                <log.stdout.ref><![CDATA[<appender-ref ref="stdout" />]]></log.stdout.ref>
 			</properties>
 		</profile>
 		<profile>
@@ -203,6 +235,13 @@
 			<properties>
 				<antx>ant_prd</antx>
 				<locale>en</locale>
+				
+				<log.moduleName>ssm-project</log.moduleName>
+                <log.base>logs</log.base>
+                <log.other.level>WARN</log.other.level>
+                <log.root.level>WARN</log.root.level>
+                <log.maxSize>10MB</log.maxSize>
+                <log.stdout.ref><![CDATA[<appender-ref ref="stdout" />]]></log.stdout.ref>
 			</properties>
 		</profile>
 	</profiles>

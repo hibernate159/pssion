@@ -8,6 +8,8 @@
 .gitgnore
 .gitignore
 .settings
+*/logback.xml/*
+*/ant.properties/*
 */.git/*
 */.settings/*
 */target/*

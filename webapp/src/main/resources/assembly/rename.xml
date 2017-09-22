@@ -14,10 +14,10 @@
 			<filtered>false</filtered>
 		</file>
 		<file>
-			<source>src/main/resources/locale/message_${locale}.properties</source>
-			<outputDirectory>WEB-INF/classes/locale</outputDirectory>
-			<destName>messages.properties</destName>
-			<filtered>false</filtered>
-		</file>
+            <source>src/main/resources/assembly/logback_build.xml</source>
+            <outputDirectory>WEB-INF/classes/</outputDirectory>
+            <destName>logback-test.xml</destName>
+            <filtered>true</filtered>
+        </file>
 	</files>
 </assembly>  

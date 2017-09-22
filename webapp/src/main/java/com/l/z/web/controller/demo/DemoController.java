@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.l.z.common.annotations.CsrfBindSwitch;
 import com.l.z.common.biz.IDemoService;
 import com.l.z.common.pojo.vo.DemoVO;
 import com.l.z.web.controller.AbstractBaseController;
@@ -28,6 +29,7 @@ public class DemoController extends AbstractBaseController implements IBaseReque
     @RequestMapping(value = "rp_{type}.htm")
     public ModelAndView screenPageHtml(@PathVariable(value = "type") String type,
                     @ModelAttribute("returnPage") DemoVO params) {
+        log.warn("demo test log");
         ModelAndView mv = new ModelAndView();
         if (StringUtils.equals("", type)) {
             demoServiceImpl.testDemo("");
@@ -46,9 +48,10 @@ public class DemoController extends AbstractBaseController implements IBaseReque
     }
 
     @Override
+    @CsrfBindSwitch
     @RequestMapping(value = "f_{action}.do", params = "_csrf_token", method = { RequestMethod.POST })
     public ModelAndView doFormToAction(@PathVariable(value = "action") String action, DemoVO params) {
-        ModelAndView mv = new ModelAndView("error.ftl");
+        ModelAndView mv = new ModelAndView("error");
         if (StringUtils.equals("", action)) {
             demoServiceImpl.testDemo("");
         }

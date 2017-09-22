@@ -6,12 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.l.z.common.annotations.CsrfBindSwitch;
 import com.l.z.common.pojo.Demo;
 
 @Controller
 @RequestMapping(value = "/show/")
 public class LoginController {
 
+    @CsrfBindSwitch(open = false)
     @RequestMapping(value = "login.do", params = "uname", method = { RequestMethod.GET })
     public ModelAndView login(HttpSession redisSession, Demo demo) {
         ModelAndView mv = new ModelAndView();
@@ -27,6 +30,7 @@ public class LoginController {
         return mv;
     }
 
+    @CsrfBindSwitch(open = false)
     @RequestMapping(value = "logout.do", method = { RequestMethod.GET })
     public ModelAndView logout(HttpSession redisSession) {
         if (redisSession != null) {

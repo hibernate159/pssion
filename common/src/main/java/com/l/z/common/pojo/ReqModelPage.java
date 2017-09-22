@@ -4,7 +4,6 @@ public class ReqModelPage {
 
     private String  userId;
     private String  viewName;
-    private String  _csf_token;
 
     private boolean check;
     private String  msg;
@@ -26,14 +25,6 @@ public class ReqModelPage {
 
     public void setViewName(String viewName) {
         this.viewName = viewName;
-    }
-
-    public String get_csf_token() {
-        return _csf_token;
-    }
-
-    public void set_csf_token(String _csf_token) {
-        this._csf_token = _csf_token;
     }
 
     public boolean isCheck() {
